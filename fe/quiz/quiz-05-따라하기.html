@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+    <!-- Alt + Shift + F 정렬 -->
+</head>
+
+<body>
+    <form>
+        <h1>나의 점심 취향 설문조사</h1>
+        이름 : <input type="text">
+
+        <fieldset>
+            <legend>학년 선택</legend>
+            <table>
+                <tr>
+                    <th>번호</th>
+                    <th>학년</th>
+                    <th>선택</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><label for="gr1">1학년</label></td>
+                    <td><input type="radio" name="grade" id="gr1"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><label for="gr2">2학년</label></td>
+                    <td><input type="radio" name="grade" id="gr2"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><label for="gr3">3학년</label></td>
+                    <td><input type="radio" name="grade" id="gr3"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><label for="gr4">4학년</label></td>
+                    <td><input type="radio" name="grade" id="gr4"></td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <br>
+        <fieldset>
+            <legend>좋아하는 음식 (복수 선택 가능)</legend>
+            <label><input type="checkbox"> 한식</label><br>
+            <label><input type="checkbox"> 중식</label><br>
+            <label><input type="checkbox"> 일식</label><br>
+            <label><input type="checkbox"> 양식</label><br>
+            <label><input type="checkbox"> 분식</label><br>
+        </fieldset>
+        <br>
+        <button>제출하기</button>
+    </form>
+</body>
+
+</html>
