@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            height: 4000px;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .red-box {
+
+            background-color: red;
+            left: 100px;
+            position: relative;
+            z-index: 500;
+            /* z-index: n값; = 보여지는 화면을 앞으로 빼는 값 */
+        }
+
+        .green-box {
+            background-color: green;
+            left: 100px;
+            top: 50px;
+            position: fixed;
+            z-index: 1;
+
+        }
+
+        .blue-box {
+            background-color: blue;
+
+            left: 50px;
+            top: -30px;
+            position: relative;
+
+        }
+
+        .top-box {
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            position: fixed;
+            right: 50px;
+            bottom: 100px;
+        }
+
+        .navbar {
+            height: 100px;
+            background-color: lightblue;
+            position:sticky;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box red-box"></div>
+    <div class="box green-box"></div>
+    <div class="box blue-box"></div>
+
+    <div class="top-box"></div>
+
+    <div class="navbar"></div>
+</body>
+
+</html>
