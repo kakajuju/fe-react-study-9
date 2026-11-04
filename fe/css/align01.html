@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*
+            가운데 정렬
+
+            1. margin: 0 auto;   (좌우 여백 margin 자동)
+                inline 요소 대상 : 작동X
+                block 요소 대상 : block 요소 자기자신이 가운데 정렬
+
+            2. text-align: center;
+                inline 요소 대상 : 작동X
+                block 요소 대상 : 내부 컨텐츠 요소가 가운데 정렬
+
+
+            block 요소 입장 -> 내가 가운데 정렬 되고 싶다 -> 자기자신 margin: 0 auto;
+            inline 요소 입장 -> 내가 가운데 정렬 되고 싶다 -> 자기부모 block 요소에 text-align:center;
+
+        */
+
+
+        .out-box {
+            border: 1px solid black;
+            width: 400px;
+            text-align: center; /* 내부 요소를 가운데로  */
+        margin:0 auto; /* 블록 요소가 자기자신을 가운데 정렬하는 것 */
+        }
+
+        .p1 {
+            text-align: center;
+        }
+
+        .span1 {
+            text-align: center;
+        }
+
+        .inner-box span {
+            text-align: center;
+            /* 작동x */
+            mergin: 0 auto;
+            /* 작동x */
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .inner-box {
+            text-align: center;
+
+            width: 250px;
+            border: 1px solid red;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <p class="p1">p1p1</p>
+    <span class="span1">span1span1</span>
+
+
+    <div class="out-box">
+        <p>p tag outbox</p>
+        <span>span tag outbox</span>
+
+        <div class="inner-box">
+            <h2>h2 tag inner box</h2>
+            <span>span tag inner box</span>
+            <br>
+            <input type="button" value="버튼">
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
