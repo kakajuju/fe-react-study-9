@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+
+  <!-- 웹 폰트: CSS의 @import보다 <link>가 더 빨리 내려받기 시작합니다 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+  <!-- 아이콘 폰트 (integrity: 파일이 바뀌지 않았는지 브라우저가 검사) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- defer: HTML을 다 읽은 뒤 실행 → head에 둬도 화면 표시를 막지 않음 -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- STEP 2. 키보드 사용자를 위한 건너뛰기 링크 -->
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- STEP 3. 헤더 -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="#top">ME</a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#skills">Skills</a></li>
+          <li><a class="nav__link" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- STEP 4. 첫 화면 (Hero) -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="hero__eyebrow">Welcome</p>
+        <h1 class="hero__title" id="hero-title">I'M A <span class="hero__typing">Front-End Developer</span></h1>
+        <p class="hero__desc">사용자를 먼저 생각하는 웹을 만듭니다. HTML과 CSS로 시작해 한 걸음씩 성장하고 있어요.</p>
+        <a class="btn btn--outline hero__cta" href="#contact">Contact Me</a>
+        <a class="hero__scroll" href="#about" aria-label="아래로 이동">
+          <i class="fa-solid fa-computer-mouse" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- STEP 6. About -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-title">
+          <p class="section-title__sub">Who Am I</p>
+          <h2 class="section-title__main" id="about-title">About Me</h2>
+        </div>
+
+        <div class="about">
+          <img class="about__img" src="../../html_CSS_sample/images/me_alone.jpg" alt="프로필 사진" width="640" height="426" loading="lazy">
+          <div class="about__text">
+            <h3 class="about__greeting">Hello, <strong>I'm 홍길동</strong></h3>
+            <p>웹 퍼블리셔이자 프론트엔드 개발자를 꿈꾸고 있습니다.</p>
+            <p>시맨틱 HTML과 반응형 CSS로 누구나 쓰기 편한 화면을 만드는 데 관심이 많아요.</p>
+            <ul class="social" aria-label="SNS 링크">
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub (새 창)"><i class="fa-brands fa-github" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram (새 창)"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube (새 창)"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7. Skills -->
+    <section class="section section--alt" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-title">
+          <p class="section-title__sub">What I Do</p>
+          <h2 class="section-title__main" id="skills-title">Skills</h2>
+        </div>
+
+        <ul class="skills">
+          <li class="card">
+            <i class="fa-brands fa-html5 card__icon" aria-hidden="true"></i>
+            <h3 class="card__title">HTML5</h3>
+            <p class="card__desc">의미에 맞는 태그로 문서 구조를 설계합니다.</p>
+          </li>
+          <li class="card">
+            <i class="fa-brands fa-css3-alt card__icon" aria-hidden="true"></i>
+            <h3 class="card__title">CSS3</h3>
+            <p class="card__desc">flex와 grid로 어떤 화면에서도 깨지지 않는 레이아웃을 만듭니다.</p>
+          </li>
+          <li class="card">
+            <i class="fa-brands fa-js card__icon" aria-hidden="true"></i>
+            <h3 class="card__title">JavaScript</h3>
+            <p class="card__desc">스크롤, 타이핑 효과처럼 화면에 생동감을 더합니다.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STEP 8. Portfolio -->
+    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-title">
+          <p class="section-title__sub">My Works</p>
+          <h2 class="section-title__main" id="portfolio-title">Portfolio</h2>
+        </div>
+
+        <ul class="works">
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock1.png" alt="패키지 디자인 작업 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">Branding</p>
+              <h3 class="work__title">Package Design</h3>
+            </div>
+          </li>
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock2.png" alt="태블릿 앱 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">Development</p>
+              <h3 class="work__title">Tablet App</h3>
+            </div>
+          </li>
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock3.png" alt="음료 마케팅 페이지 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">Marketing</p>
+              <h3 class="work__title">Drink Campaign</h3>
+            </div>
+          </li>
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock4.png" alt="SNS 앱 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">App</p>
+              <h3 class="work__title">SNS App</h3>
+            </div>
+          </li>
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock5.png" alt="영상 스트리밍 앱 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">App</p>
+              <h3 class="work__title">Streaming App</h3>
+            </div>
+          </li>
+          <li class="work">
+            <img class="work__img" src="../../html_CSS_sample/images/mock6.png" alt="기업 웹사이트 화면" width="350" height="230" loading="lazy">
+            <div class="work__body">
+              <p class="work__category">Web</p>
+              <h3 class="work__title">Company Web</h3>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STEP 9. Contact -->
+    <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-title">
+          <p class="section-title__sub">Contact</p>
+          <h2 class="section-title__main" id="contact-title">Contact With Me</h2>
+        </div>
+
+        <div class="contact">
+          <ul class="contact__info">
+            <li class="info-card">
+              <i class="fa-solid fa-phone info-card__icon" aria-hidden="true"></i>
+              <div>
+                <h3 class="info-card__title">Phone</h3>
+                <a class="info-card__text" href="tel:01000000000">010-0000-0000</a>
+              </div>
+            </li>
+            <li class="info-card">
+              <i class="fa-solid fa-envelope info-card__icon" aria-hidden="true"></i>
+              <div>
+                <h3 class="info-card__title">Email</h3>
+                <a class="info-card__text" href="mailto:hello@example.com">hello@example.com</a>
+              </div>
+            </li>
+            <li class="info-card">
+              <i class="fa-solid fa-location-dot info-card__icon" aria-hidden="true"></i>
+              <div>
+                <h3 class="info-card__title">Address</h3>
+                <p class="info-card__text">Seoul, Republic of Korea</p>
+              </div>
+            </li>
+          </ul>
+
+          <form class="form" action="#">
+            <div class="form__group">
+              <label for="name">이름</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="form__group">
+              <label for="email">이메일</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="form__group">
+              <label for="message">메시지</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn btn--primary" type="submit">보내기</button>
+            <!-- role="status": 내용이 바뀌면 스크린리더가 읽어 줌 (aria-live) -->
+            <p class="form__status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- STEP 10. Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 My Portfolio. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

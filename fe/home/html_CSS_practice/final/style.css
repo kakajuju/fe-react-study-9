@@ -1,0 +1,621 @@
+/* =====================================================
+   STEP 2. 디자인 토큰 + 초기화
+   - 색/크기/간격을 변수로 한곳에 모아 두면, 값 하나만 바꿔도 전체가 바뀝니다.
+   - 반응형 기준: 768px(태블릿) / 1024px(데스크톱)
+   ===================================================== */
+:root {
+  /* 색상 */
+  --color-primary: #d63c3c;
+  --color-on-primary: #fff;
+  --color-text: #222;
+  --color-text-muted: #555;
+  --color-bg: #fff;
+  --color-bg-alt: #f5f5f5;
+  --color-border: #ddd;
+  --color-input-border: #767676; /* 입력창 테두리는 배경과 3:1 이상 대비 필요 */
+  --color-on-dark: #fff;
+  --color-header-bg: rgb(0 0 0 / 0.85);
+  --color-focus: #2563eb;
+
+  /* 글자 크기 (1rem = 16px) */
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+  --fs-icon: 2.5rem;
+  --fs-hero: clamp(2rem, 6vw, 3.5rem); /* 최소 2rem ~ 최대 3.5rem 사이에서 화면에 맞게 */
+
+  /* 간격 */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 5rem;
+
+  /* 기타 */
+  --font-base: 'Poppins', system-ui, sans-serif;
+  --radius: 12px;
+  --container: 1140px;
+  --header-h: 4rem;
+  --touch: 44px; /* 손가락으로 누르기 편한 최소 크기 */
+  --shadow: 0 4px 16px rgb(0 0 0 / 0.08);
+  --duration: 0.3s;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;              /* 메뉴 클릭 시 부드럽게 이동 (JS 불필요) */
+  scroll-padding-top: var(--header-h);  /* 고정 헤더에 제목이 가려지지 않게 */
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* 키보드(Tab)로 이동할 때만 보이는 포커스 테두리 */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+/* 평소엔 화면 위로 숨어 있다가 Tab을 누르면 나타남 */
+.skip-link {
+  position: absolute;
+  top: var(--space-1);
+  left: var(--space-1);
+  z-index: 100;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* =====================================================
+   STEP 3. 헤더
+   ===================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--header-h);
+  color: var(--color-on-dark);
+}
+
+/* 배경을 가상 요소로 따로 두고 opacity만 바꾸면 애니메이션이 가볍습니다 */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-header-bg);
+  opacity: 0;
+  transition: opacity var(--duration);
+}
+
+.header.is-scrolled::before {
+  opacity: 1;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  min-height: var(--touch);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+}
+
+/* 좁은 화면에서 메뉴가 넘치면 페이지 전체가 아니라 메뉴만 가로 스크롤 */
+.nav {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.nav__list {
+  display: flex;
+}
+
+.nav__link {
+  display: flex;
+  align-items: center;
+  min-height: var(--touch);
+  padding: 0 var(--space-1);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+@media (min-width: 768px) {
+  .nav__link {
+    padding: 0 var(--space-2);
+    font-size: var(--fs-base);
+  }
+}
+
+/* =====================================================
+   STEP 4. 첫 화면 (Hero)
+   ===================================================== */
+.hero {
+  position: relative; /* 안쪽 .hero__scroll(absolute)의 위치 기준 */
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--header-h) 0 var(--space-6);
+  color: var(--color-on-dark);
+  text-align: center;
+  /* 위층: 반투명 검은 막 / 아래층: 사진 */
+  background:
+    linear-gradient(rgb(0 0 0 / 0.75), rgb(0 0 0 / 0.75)),
+    url('../../html_CSS_sample/images/me.jpg') center / cover no-repeat;
+}
+
+.hero__eyebrow {
+  font-size: var(--fs-lg);
+}
+
+.hero__title {
+  margin: var(--space-3) 0;
+  font-size: var(--fs-hero);
+  line-height: 1.2;
+  letter-spacing: 2px;
+}
+
+/* 글자 뒤에 깜빡이는 커서 만들기 */
+.hero__typing::after {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: -0.1em;
+  background-color: currentColor;
+  animation: blink 0.7s ease-in-out infinite alternate;
+}
+
+.hero__desc {
+  max-width: 36ch; /* ch = 글자 1개 너비 → 한 줄 길이를 읽기 좋게 제한 */
+  margin: 0 auto;
+  font-size: var(--fs-lg);
+}
+
+.hero__cta {
+  margin-top: var(--space-6);
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: var(--space-2);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  font-size: var(--fs-xl);
+  transform: translateX(-50%);
+  animation: up-down 1s ease-in-out infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes up-down {
+  from { transform: translate(-50%, 0); }
+  to { transform: translate(-50%, -8px); }
+}
+
+/* 공통 버튼 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch);
+  padding: 0 var(--space-4);
+  border: 2px solid transparent; /* 투명 테두리: 윈도우 고대비 모드에서 버튼 윤곽이 보이게 */
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform var(--duration);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  border-color: currentColor;
+}
+
+.btn--primary {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* =====================================================
+   STEP 5. 섹션 공통 뼈대
+   ===================================================== */
+.section {
+  padding: var(--space-8) 0;
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-title {
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.section-title__sub {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.section-title__main {
+  font-size: var(--fs-2xl);
+}
+
+@media (min-width: 768px) {
+  .section-title__main {
+    font-size: var(--fs-3xl);
+  }
+}
+
+/* =====================================================
+   STEP 6. About - flex 2단
+   ===================================================== */
+.about {
+  display: flex;
+  flex-direction: column; /* 모바일: 위아래로 쌓기 */
+  gap: var(--space-4);
+}
+
+.about__img {
+  border-radius: var(--radius);
+}
+
+.about__greeting {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-xl);
+}
+
+/* 하위 선택자: .about__greeting 안의 strong */
+.about__greeting strong {
+  color: var(--color-primary);
+}
+
+/* 자식 선택자: .about__text 바로 아래의 p만 (ul 안의 내용에는 적용 안 됨) */
+.about__text > p {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-muted);
+}
+
+.social {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  font-size: var(--fs-xl);
+  transition: transform var(--duration);
+}
+
+.social a:hover {
+  transform: scale(1.15);
+}
+
+@media (min-width: 768px) {
+  .about {
+    flex-direction: row; /* 태블릿 이상: 좌우로 나란히 */
+    align-items: center;
+  }
+
+  .about__img,
+  .about__text {
+    flex: 1;      /* 남는 공간을 1:1로 나눠 가짐 */
+    min-width: 0; /* 이미지가 원래 크기 때문에 줄어들지 못하는 문제 방지 */
+  }
+}
+
+/* =====================================================
+   STEP 7. Skills - grid 카드 (미디어쿼리로 열 개수 변경)
+   ===================================================== */
+.skills {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  padding: var(--space-4);
+  background-color: var(--color-bg);
+  border: 1px solid transparent; /* 고대비 모드에서는 그림자가 사라지므로 윤곽 대체 */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--duration);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card__icon {
+  font-size: var(--fs-icon);
+  color: var(--color-primary);
+  transition: transform var(--duration);
+}
+
+/* 부모(.card)에 마우스를 올리면 자식(.card__icon)이 바뀜 */
+.card:hover .card__icon {
+  transform: rotate(-10deg) scale(1.1);
+}
+
+.card__title {
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: var(--fs-xl);
+}
+
+.card__desc {
+  color: var(--color-text-muted);
+}
+
+/* =====================================================
+   STEP 8. Portfolio - grid 자동 배치 (미디어쿼리 없이 반응형)
+   ===================================================== */
+.works {
+  display: grid;
+  /* 칸 너비가 최소 280px이 되도록, 들어가는 만큼 자동으로 열을 만듦 */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+.work {
+  overflow: hidden; /* 확대된 이미지가 카드 밖으로 나가지 않게 */
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.work__img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover; /* 비율이 달라도 찌그러지지 않고 잘라서 채움 */
+  transition: transform var(--duration);
+}
+
+.work:hover .work__img {
+  transform: scale(1.05);
+}
+
+.work__body {
+  padding: var(--space-2) var(--space-2) var(--space-3);
+}
+
+.work__category {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.work__title {
+  font-size: var(--fs-lg);
+}
+
+/* =====================================================
+   STEP 9. Contact - 정보 카드 + 폼
+   ===================================================== */
+.contact {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .contact {
+    grid-template-columns: 1fr 2fr; /* 왼쪽 1 : 오른쪽 2 */
+    align-items: start;
+  }
+}
+
+.contact__info {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.info-card__icon {
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+.info-card__title {
+  font-size: var(--fs-base);
+}
+
+.info-card__text {
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere; /* 긴 이메일 주소가 카드를 뚫고 나가지 않게 */
+}
+
+a.info-card__text:hover {
+  text-decoration: underline;
+}
+
+.form {
+  padding: var(--space-4);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.form__group {
+  margin-bottom: var(--space-3);
+}
+
+/* label은 인라인 요소라 아래 여백이 안 먹으므로 block으로 변경 */
+.form__group label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 700;
+}
+
+.form__group input,
+.form__group textarea {
+  width: 100%;
+  min-height: var(--touch);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius);
+}
+
+.form__group textarea {
+  min-height: 12rem;
+  resize: vertical;
+}
+
+.form__group input:focus,
+.form__group textarea:focus {
+  border-color: var(--color-focus);
+}
+
+.form__status {
+  margin-top: var(--space-2);
+  font-weight: 700;
+}
+
+/* =====================================================
+   STEP 10. Footer
+   ===================================================== */
+.footer {
+  padding: var(--space-4) 0;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+/* =====================================================
+   STEP 11. 다크 모드 + 움직임 줄이기
+   ===================================================== */
+/* 토큰 값만 바꾸면 페이지 전체 색이 바뀝니다 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #ff6b6b;
+    --color-on-primary: #111;
+    --color-text: #eee;
+    --color-text-muted: #bbb;
+    --color-bg: #121212;
+    --color-bg-alt: #1d1d1d;
+    --color-border: #333;
+    --color-input-border: #8a8a8a;
+    --shadow: 0 4px 16px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* OS에서 '애니메이션 줄이기'를 켠 사용자에게는 움직임을 멈춤 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
