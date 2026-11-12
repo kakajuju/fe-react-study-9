@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span>달식당</span> <span id="love">좋아요♡</span>
+
+    <script>
+
+        let i = 0;
+        document.getElementById('love').addEventListener('click', function () {
+            i++;
+            console.log('좋아요♥' + i);
+            document.getElementById('love').textContent = '좋아요♥' + i;
+            document.getElementById('love').classList.add("click");
+        });
+
+
+    </script>
+</body>
+
+</html>
