@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: antiquewhite;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="box"></div>
+
+    <input type="text" id="inp_txt">
+
+    <script>
+
+        // mouse event
+
+        const div_box = document.getElementsByClassName('box')[0];
+
+        div_box.addEventListener('mouseover', ()=> {console.log('마우스 올라옴'); })
+        div_box.addEventListener('mouseout', ()=> {console.log('마우스 나감'); })
+
+        div_box.addEventListener('click', (event)=>{
+            //매개변수 event를 선언해두면  -> 브라우저가 마우스 이벤트 정보가 담겨있는 객체를 전달해줌
+
+            console.log(event);
+        })
+
+        // keyboard event
+
+        const inp_txt = document.getElementById('inp_txt');
+
+        inp_txt.addEventListener('keydown', (event)=>{
+                                    //매개변수 event에 발생한 키보드 이벤트 정보가 전달됨
+
+            console.log(event);
+
+            // deprecated 상태 지금은 사용가능하지만... 추후에 업데이트나 패치나 등등 사라질수 있으니 주의
+            if(event.keyCode == 13){
+                //...
+            }
+
+            // keyCode 보다 key 사용 권장
+            if(event.key == 'Enter'){
+                console.log('Enter키가 눌림');
+            }
+
+            if (event.key =='q'){
+                location.href = 'https://coupang.com'; //url 변경 -> 페이지 이동
+            }
+
+
+        })
+
+
+    </script>
+
+</body>
+</html>

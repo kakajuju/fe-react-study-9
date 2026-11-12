@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css 코드 */
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: forestgreen;
+        }
+
+        .box-bgcolor {
+            background-color: darkmagenta;
+        }
+
+        .font-white {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div></div>
+
+    <h1 id="target">이벤트 등록</h1>
+    
+    <button onclick="event1()">이벤트 버튼1</button>
+
+    <button class="evt-btn" id="btn_evt2">이벤트 버튼2</button>
+
+    <button class="evt-btn" id="btn_evt3">이벤트 버튼3</button>
+
+    <div id="box" class="box-bgcolor">박스 div</div>
+
+    <script>
+        //js 코드
+
+        // js 기준 선택자
+        document.getElementById('target');  //id 선택자 - js형태로 #은 뺀다.
+        document.getElementsByClassName("evt-btn");  // class 선택자 - js형태로 .은 뺀다.
+        document.querySelector("#box");       // css 선택자 문법으로 요소를 선택 - css형태로 #을 붙인다.
+        document.querySelectorAll(".evt-btn");    // css 선택자 문법으로 요소 여러개를 선택 - css형태로 .을 붙인다.
+
+        // 1) 함수를 직접 속성에 연결
+        function event1(){
+            console.log('event1() 호출됨');
+
+            // document.getElementById('target').textContent = '이벤트 등록1 에서 변경함';
+            // document.getElementById('target').style.color = "red";
+
+            const h1_target = document.getElementById('target');
+            h1_target.textContent = '이벤트 등록1 에서 변경함';
+            h1_target.style.color = "red";
+        }
+
+        // 2) js 에서 함수를 대입
+        function event2(){
+            console.log('event2() 호출됨');
+            const h1_target = document.querySelector("#target");  
+            h1_target.textContent = '이벤트 등록2 from event2()';
+            h1_target.style.fontSize = "36px";      // css에 있던 font-size는 js에서는  카멜케이스로 변경한다.
+
+        }
+
+        document.getElementById('btn_evt2').onclick = event2;
+
+        // 3) addEventListener
+        const btn_evt3 = document.getElementById('btn_evt3');
+
+        const event3 = ()=>{
+            console.log('event3() 함수 호출됨');
+        }
+
+        btn_evt3.addEventListener('click', event3);
+        // 이벤트등록              무슨이벤트  어떤함수를 실행
+
+        btn_evt3.addEventListener('dblclick', ()=>{
+            // a href='naver.com'
+            location.href = 'https://www.naver.com';  //js 코드로 페이지 이동 발생
+        })
+
+
+        document.getElementById('box').addEventListener('click', ()=>{
+            console.log('box 가 click 됨');
+
+            // document.getElementById('box').classList.add      : 클래스 추가
+            // document.getElementById('box').classList.remove   : 클래스 삭제
+            // document.getElementById('box').classList.toggle   : 클래스 On/Off (추가/삭제)
+
+            document.getElementById('box').classList.toggle("font-white");
+        });
+        
+
+
+
+
+    </script>
+</body>
+</html>
