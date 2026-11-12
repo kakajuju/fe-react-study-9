@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 30px;
+        }
+
+        .main {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        /* 제목 영역 */
+        .main th {
+            padding: 15px;
+            border-bottom: 2px solid black;
+        }
+
+        /* 게시글 영역 */
+        .main td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* 제목 링크 */
+        .main a {
+            color: black;
+            text-decoration: none;
+        }
+
+        .main a:hover {
+            color: blue;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <table class="main">
+
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+            <th>좋아요</th>
+        </tr>
+
+        <tr>
+            <td>37</td>
+            <td>
+                <a href="files/평가지.zip" download>
+                    01.웹 솔루션 구축(i)-평가지-박민호
+                </a>
+            </td>
+            <td>박민호</td>
+            <td>2026.01.06.</td>
+            <td>3</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td>36</td>
+            <td>
+                <a href="files/평가지.zip" download>
+                    01.웹 솔루션 구축(i)-평가지-박민호
+                </a>
+            </td>
+            <td>박민호</td>
+            <td>2026.01.06.</td>
+            <td>3</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td>35</td>
+            <td>
+                <a href="files/평가지.zip" download>
+                    01.웹 솔루션 구축(i)-평가지-박민호
+                </a>
+            </td>
+            <td>박민호</td>
+            <td>2026.01.06.</td>
+            <td>3</td>
+            <td>0</td>
+        </tr>
+
+    </table>
+
+</body>
+</html>

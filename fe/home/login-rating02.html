@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        /* 모든 요소의 기본 여백 제거 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 로그인 전체 영역 */
+        .out-box {
+            width: 500px;
+            margin: 100px auto;
+            padding: 30px;
+            text-align: center;
+            background-color: darkslategray;
+        }
+
+        /* 이메일 및 비밀번호 입력창 */
+        .id-box {
+            width: 300px;
+            height: 40px;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid white;
+            color: black;
+            background-color: white;
+        }
+
+        /* 제목 */
+        #text-white {
+            margin-bottom: 20px;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        /* 로그인 버튼 */
+        #login-box {
+            display: block;
+            width: 300px;
+            margin: 15px auto;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            background-color: lightseagreen;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 로그인 버튼 마우스 효과 */
+        #login-box:hover {
+            background-color: teal;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <form action="login" class="out-box">
+
+        <p id="text-white">Welcome Back!</p>
+
+        <input class="id-box"
+            type="email"
+            name="email"
+            placeholder="Email address"
+            required>
+
+        <br>
+
+        <input class="id-box"
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <br>
+
+        <a href="main-rating02.html" id="login-box">LOG IN</a>
+
+    </form>
+
+</body>
+</html>
