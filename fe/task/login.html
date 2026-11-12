@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css 코드 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .out-box {
+            width: 500px;
+            text-align: center;
+            /* 내부 요소를 가운데로  */
+            margin: 0 auto;
+            /* 블록 요소가 자기자신을 가운데 정렬하는 것 */
+            background-color: darkslategray
+        }
+
+        .id-box {
+            border: 1px solid white;
+            width: 200px;
+            height: 40px;
+            color: aliceblue;
+            margin: 10px;
+            background-color: darkslategray
+        }
+
+        #text-white {
+            margin-bottom: 10px;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        #login-box {
+            font-size: 25px;
+            color: white;
+            width: 200px;
+            text-align: center;
+            margin: 0 auto;
+            background-color: lightseagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- html 코드 -->
+    <form action="login" class="out-box">
+        <div>
+            <p id="text-white">Welcome Back!</p>
+            <input class="id-box" type="email" name="Email address" value=""><br>
+            <input class="id-box" type="password" name="password" value=""><br>
+            <div id='login-box'><a href="main.html" target="_self">LOG IN</a></div>
+            <br>
+        </div>
+    </form>
+
+    <script>
+        // js 코드
+
+
+
+    </script>
+</body>
+
+</html>
