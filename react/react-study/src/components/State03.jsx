@@ -1,4 +1,4 @@
-import { sueState, useState } from 'react';
+import { useState } from 'react';
 
 function State03() {
 
@@ -38,7 +38,7 @@ function State03() {
 
                 // 깊은복사 -> 새로운 주소에 데이터 생성...
                 // set함수(새로운주소);
-                let temp = arr; //얕은 복사로는 안되고...
+                // let temp = arr; //얕은 복사로는 안되고...
 
                 let temp = [ ...arr ]; //깊은 복사  [...[1,2,3,4,5]] ->복사 [1,2,3,4,5]
                 temp.push(6);   //[1,2,3,4,5,6]
