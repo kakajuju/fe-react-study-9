@@ -9,6 +9,7 @@ import Export01 from './components/Export01'
 import ProductInfo from './quiz/Quiz00/ProductInfo'
 import Quiz01 from './quiz/Quiz01/Quiz01'
 import State02 from './components/State02'
+import State03 from './components/State03'
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
     // <Export01/>
     // <ProductInfo/>
     // <Quiz01/>
-    <State02/>
+    // <State02/>
+    <State03/>
   )
 }
 
