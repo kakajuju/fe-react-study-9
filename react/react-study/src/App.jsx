@@ -10,6 +10,7 @@ import ProductInfo from './quiz/Quiz00/ProductInfo'
 import Quiz01 from './quiz/Quiz01/Quiz01'
 import State02 from './components/State02'
 import State03 from './components/State03'
+import Props01 from './components/Props01'
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
     // <ProductInfo/>
     // <Quiz01/>
     // <State02/>
-    <State03/>
+    // <State03/>
+    <Props01/>
   )
 }
 
