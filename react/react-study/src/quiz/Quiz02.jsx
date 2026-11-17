@@ -7,7 +7,7 @@ function Quiz02() {
 
     return (
         <div>
-            <h1>{text[count % text.length]}</h1>
+            <p>{text[count % text.length]}</p>
             <button onClick={() => {
                 setCount(count + 1);
             }}>변경버튼</button>
