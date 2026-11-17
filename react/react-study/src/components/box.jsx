@@ -20,11 +20,11 @@ function Box(props) {
 let [ a, b, c ] = [ 10, 20, 30 ];
 
 
-function Box({text, detail}) {
+function Box({title, detail}) {
     //props : 컴포넌트에서 사용할 매개변수
     return (
         <div style={{ backgroundColor: 'lightgreen', margin:'10px' }}>
-            <h1>{text}</h1>
+            <h1>{title}</h1>
             <h2>{detail}</h2>
         </div>
     )

@@ -1,4 +1,4 @@
-import Box from "./box";
+import Box from "./Box";
 
 function Props01() {
 
@@ -41,9 +41,9 @@ function Props01() {
             {/* <Box/> */}
 
             {/* <Box text={arr[ 아침 ]} detail={detail[ 졸리다 ]} /> */}
-            <Box text={arr[ 0 ]} detail={detail[ 0 ]} />
-            <Box text={arr[ 1 ]} detail={detail[ 1 ]} />
-            <Box text={arr[ 2 ]} detail={detail[ 2 ]} />
+            <Box title={arr[ 0 ]} detail={detail[ 0 ]} />
+            <Box title={arr[ 1 ]} detail={detail[ 1 ]} />
+            <Box title={arr[ 2 ]} detail={detail[ 2 ]} />
 
             <hr />
             <hr />
@@ -54,7 +54,7 @@ function Props01() {
                 arr.map((value, index) => {
                     return (
                         //둘중 하나 선택해서 사용
-                        <Box text={value} detail={detail[ index ]} />
+                        <Box title={value} detail={detail[ index ]} />
                         //<Box text={arr[ index ]} detail={detail[ index ]} />
                     )
                 })
