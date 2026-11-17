@@ -13,6 +13,7 @@ import State03 from './components/State03'
 import Props01 from './components/Props01'
 import Quiz02 from './quiz/Quiz02-따라하기'
 import Props02 from './components/Props02'
+import Quiz03 from  './quiz/Quiz03/Quiz03-따라하기'
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
     // <State03/>
     // <Props01/>
     // <Quiz02/>
-    <Props02/>
+    // <Props02/>
+    <Quiz03/>
   )
 }
 
