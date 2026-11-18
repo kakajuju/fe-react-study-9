@@ -27,6 +27,8 @@ function NewsBlog() {
     let [selectsdTitle,setselectsdTitle] = useState('');
     let [selectsdLikeCount, setselectsdLikeCount] = useState(0);
 
+    let [inputText, setInputText] = useState('');
+    
     return (
         <div>
             <div className="black-nav">
@@ -125,6 +127,29 @@ function NewsBlog() {
                                 }}>♥</span> {likeCountArr[2]}</h4>
                 <p>내용</p>
             </div> */}
+
+            <div>
+                <input type="text" id="input_news_title" value={inputText} onChange={(event)=>{
+                    //매개변수 event : 키보드 이벤트정보
+                    //event.target 이벤트가 발생한 요소 접근
+
+                    // input 창에서 입력 발생 -> onChange 이벤트에 등록된 함수 수행 -> value값을 state변수에 저장해둠
+
+                    console.log(event.target.value);
+                    setInputText(event.target.value);
+                }}/>
+                <button onClick={()=>{
+
+
+                    // input에서 입력되어 저장된 state변수값 -> news배열에 추가등록 -> 재렌더링+화면에표시
+                    let temp = [...news];
+                    temp.push(inputText);
+                    setNews(temp);
+
+                    setInputText(''); // 입력값 저장하는 inputText state변수에 값을 초기화(clean)
+                    
+                }}>뉴스발행</button>
+            </div>
 
             {
                 /*  modalFlag == true ? <Modal/> : null  */
