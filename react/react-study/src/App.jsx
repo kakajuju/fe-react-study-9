@@ -11,10 +11,11 @@ import Quiz01 from './quiz/Quiz01/Quiz01'
 import State02 from './components/State02'
 import State03 from './components/State03'
 import Props01 from './components/Props01'
-import Quiz02 from './quiz/Quiz02-따라하기'
+// import Quiz02 from './quiz/Quiz02-따라하기'
 import Props02 from './components/Props02'
 import Quiz03 from  './quiz/Quiz03/Quiz03-따라하기'
 import NewsBlog from "./newcblog/NewsBlog"
+import Quiz04 from './quiz/Quiz04/Quiz04-따라하기'
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
     // <Quiz02/>
     // <Props02/>
     // <Quiz03/>
-    <NewsBlog/>
+    // <NewsBlog/>
+    <Quiz04/>
   )
 }
 
