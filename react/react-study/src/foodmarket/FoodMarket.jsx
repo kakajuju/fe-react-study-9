@@ -14,7 +14,13 @@ import food1 from './img/food1.jpg';
 import food2 from './img/food2.jpg';
 import food3 from './img/food3.jpg';
 
+import foodsData from "./data/foodsData";
+import { useState } from 'react';
+import FoodCard from './components/FoodCard';
+
 function FoodMarket() {
+
+    let [ foods, setFoods ] = useState(foodsData);
 
     return (
         <div>
@@ -41,6 +47,11 @@ function FoodMarket() {
                 React 컴포넌트 방식에서 이미지 사용식
                 1. import 이미지
                 2. 외부 이미지 URL 경로
+                3. css 에서 이미지 경로
+                    url('./
+                4. public 폴더에 이미지를 미리 저장해놓고 접근/사용
+                현재 실행중인 서번에 public 경로를 통해 image 접근 가능
+                서버가 외부 url 이미지에 접근하듯이 해당 서버 역할
 
             */}
             {/* <img src={banner_bg} />
@@ -48,18 +59,39 @@ function FoodMarket() {
 
             <div className='main-bg'></div>
 
-            {/* 한줄 기준 12로 본다. */}
             <Container>
+                <Row>
+                    {
+                        foods.map((food, index) => {
+                            return (
+                                <Col md={4} sm={4} xxl={3}>
+                                    {/* <FoodCard food={food} /> */}
+                                    <FoodCard food={food} foods={foods} index={index}/>
+                                </Col>
+                            )
+                        })
+                    }
+
+
+                </Row>
+            </Container>
+
+
+            {/* 한줄 기준 12로 본다. */}
+            {/*  <Container>
                 <Row>
                     <Col md={4} sm={4} xxl={3}>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={food1} />
                             <Card.Body>
-                                <Card.Title>뿅뿅</Card.Title>
+                                <Card.Title>{foods[ 0 ].title}</Card.Title>
                                 <Card.Text>
-                                    삥빵뽕
+                                    {foods[ 0 ].content}
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Card.Text>
+                                    {foods[ 0 ].price}
+                                </Card.Text>
+                                <Button variant="primary">상세보기</Button>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -67,30 +99,33 @@ function FoodMarket() {
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={food2} />
                             <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
+                                <Card.Title>{foods[ 1 ].title}</Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
+                                    {foods[ 1 ].content}
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Card.Text>
+                                    {foods[ 1 ].price}
+                                </Card.Text>
+                                <Button variant="primary">상세보기</Button>
                             </Card.Body>
                         </Card>
-                    </Col>
-                    <Col md={4} sm={4} xxl={3}>
+                    </Col><Col md={4} sm={4} xxl={3}>
                         <Card style={{ width: '18rem' }}>
                             <Card.Img variant="top" src={food3} />
                             <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
+                                <Card.Title>{foods[ 2 ].title}</Card.Title>
                                 <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
+                                    {foods[ 2 ].content}
                                 </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
+                                <Card.Text>
+                                    {foods[ 2 ].price}
+                                </Card.Text>
+                                <Button variant="primary">상세보기</Button>
                             </Card.Body>
                         </Card>
                     </Col>
                 </Row>
-            </Container>
+            </Container> */}
 
 
 
