@@ -55,6 +55,34 @@ function NewsBlog() {
                                 setLikeCountArr(temp);  //재렌더링 조건 충족
                             }}>♥</span> {likeCountArr[ index ]}</h4>
                             <p>내용</p>
+                            <button onClick={() => {
+
+                                // 1)
+                                // let temp = [ ...news ];
+                                // temp.splice(index, 1);
+                                // setNews(temp);
+
+                                // let tempLikes = [ ...likeCountArr ];
+                                // tempLikes.splice(index, 1);
+                                // setLikeCountArr(tempLikes);
+
+                                // 2)  filter 방식
+
+                                let temp = [ ...news ];
+                                temp = temp.filter((value, idx)=>{
+                                    return idx != index;
+                                })
+                                console.log(temp);
+                                setNews(temp);
+
+                                let tempLikes = [ ...likeCountArr ];
+                                tempLikes = tempLikes.filter((value, idx)=>{
+                                    return idx != index;
+                                })
+                                setLikeCountArr(tempLikes);
+
+
+                            }}>삭제</button>
                         </div>
                     )
                 })
@@ -162,7 +190,7 @@ function NewsBlog() {
                     temp.push(inputText);
                     setNews(temp);
 
-                    
+
                     likeCountArr.push(0);
 
                     setInputText(''); // 입력값 저장하는 inputText state변수에 값을 초기화(clean)
