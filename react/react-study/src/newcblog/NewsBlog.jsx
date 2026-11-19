@@ -8,27 +8,27 @@ function NewsBlog() {
     // 하드코딩(텍스트가 직접 작성되어있는) vs 일반변수 vs State변수
     let title = "Blog Header";
 
-    let [news1, setNews1] = useState("어제의 뉴스");
-    let [news2, setNews2] = useState("오늘의 뉴스");
-    let [news3, setNews3] = useState("내일의 뉴스");
+    let [ news1, setNews1 ] = useState("어제의 뉴스");
+    let [ news2, setNews2 ] = useState("오늘의 뉴스");
+    let [ news3, setNews3 ] = useState("내일의 뉴스");
 
-    let [news, setNews] = useState(["어제의 뉴스", "오늘의 뉴스", "내일의 뉴스"]);
+    let [ news, setNews ] = useState([ "어제의 뉴스", "오늘의 뉴스", "내일의 뉴스" ]);
     //       5           10              1
-    let [likeCount, setLikeCount] = useState(0);
+    let [ likeCount, setLikeCount ] = useState(0);
     //likeCount2
     //likeCount3
 
-    let [likeCountArr, setLikeCountArr] = useState([0, 0, 0]);
+    let [ likeCountArr, setLikeCountArr ] = useState([ 0, 0, 0 ]);
     //각 뉴스별 좋아요 갯수를 관리
 
-    let [modalFlag, setModalFlag] = useState(false);
+    let [ modalFlag, setModalFlag ] = useState(false);
 
     //뉴스를 눌렀을때 Modal 창에 전달할 정보를 저장할 변수
-    let [selectsdTitle,setselectsdTitle] = useState('');
-    let [selectsdLikeCount, setselectsdLikeCount] = useState(0);
+    let [ selectsdTitle, setselectsdTitle ] = useState('');
+    let [ selectsdLikeCount, setselectsdLikeCount ] = useState(0);
 
-    let [inputText, setInputText] = useState('');
-    
+    let [ inputText, setInputText ] = useState('');
+
     return (
         <div>
             <div className="black-nav">
@@ -45,15 +45,15 @@ function NewsBlog() {
                         <div className="post-list">
                             <h4 onClick={() => {
                                 setselectsdTitle(item);
-                                setselectsdLikeCount(likeCountArr[index]);
+                                setselectsdLikeCount(likeCountArr[ index ]);
                                 //어떤뉴스 눌렀는지 title, likecount -> 
                                 setModalFlag(!modalFlag);   //모달찰 표시여부 true/false
-                            }}>{news[index]} <span onClick={(event) => {
+                            }}>{news[ index ]} <span onClick={(event) => {
                                 event.stopPropagation();  //이벤트 발생을 추가로 전파/전달 하는 것을 stop!
-                                let temp = [...likeCountArr];
-                                temp[index] += 1;
+                                let temp = [ ...likeCountArr ];
+                                temp[ index ] += 1;
                                 setLikeCountArr(temp);  //재렌더링 조건 충족
-                            }}>♥</span> {likeCountArr[index]}</h4>
+                            }}>♥</span> {likeCountArr[ index ]}</h4>
                             <p>내용</p>
                         </div>
                     )
@@ -61,9 +61,9 @@ function NewsBlog() {
             }
 
             <div>
-                <button onClick={()=>{
-                    let temp = [...news];
-                    temp[0] = 'Today 긴급 속보!!!';
+                <button onClick={() => {
+                    let temp = [ ...news ];
+                    temp[ 0 ] = 'Today 긴급 속보!!!';
                     setNews(temp);
                 }}>긴급제목변경</button>
             </div>
@@ -129,7 +129,7 @@ function NewsBlog() {
             </div> */}
 
             <div>
-                <input type="text" id="input_news_title" value={inputText} onChange={(event)=>{
+                <input type="text" id="input_news_title" value={inputText} onChange={(event) => {
                     //매개변수 event : 키보드 이벤트정보
                     //event.target 이벤트가 발생한 요소 접근
 
@@ -137,17 +137,36 @@ function NewsBlog() {
 
                     console.log(event.target.value);
                     setInputText(event.target.value);
-                }}/>
-                <button onClick={()=>{
+                }} />
+                <button onClick={() => {
+
+                    //사전 필터링 패턴
+
+                    //문자 앞뒤에 있는 공백(띄어쓰기) 제거
+                    //띄어쓰기만 있을때 등록을 방지
+                    //trim() : 문자열 앞뒤에 있는 공백을 제거
+
+                    //공백제거
+                    inputText = inputText.trim();
+
+
+                    if (inputText === '') {
+                        alert('놉!!!');
+                        setInputText('');
+                        return;
+                    }
 
 
                     // input에서 입력되어 저장된 state변수값 -> news배열에 추가등록 -> 재렌더링+화면에표시
-                    let temp = [...news];
+                    let temp = [ ...news ];
                     temp.push(inputText);
                     setNews(temp);
 
-                    setInputText(''); // 입력값 저장하는 inputText state변수에 값을 초기화(clean)
                     
+                    likeCountArr.push(0);
+
+                    setInputText(''); // 입력값 저장하는 inputText state변수에 값을 초기화(clean)
+
                 }}>뉴스발행</button>
             </div>
 
@@ -156,9 +175,9 @@ function NewsBlog() {
             }
 
             {
-                modalFlag && <Modal title={selectsdTitle} likeCount={selectsdLikeCount} 
-                news = {news} setNews = {setNews} bgColor='lightblue'/>
-                
+                modalFlag && <Modal title={selectsdTitle} likeCount={selectsdLikeCount}
+                    news={news} setNews={setNews} bgColor='lightblue' />
+
             }
 
 
