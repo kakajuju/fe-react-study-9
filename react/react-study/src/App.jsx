@@ -17,6 +17,7 @@ import Quiz03 from  './quiz/Quiz03/Quiz03-따라하기'
 import NewsBlog from "./newcblog/NewsBlog"
 import Quiz04 from './quiz/Quiz04/Quiz04-따라하기'
 import Quiz05 from './quiz/Quiz05/Quiz05-따라하기'
+import FoodMarket from './foodmarket/FoodMarket'
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
     // <Quiz02/>
     // <Props02/>
     // <Quiz03/>
-    <NewsBlog/>
+    // <NewsBlog/>
     // <Quiz04/>
     // <Quiz05/>
+    <FoodMarket/>
 
   )
 }
