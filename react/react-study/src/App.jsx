@@ -18,6 +18,7 @@ import NewsBlog from "./newcblog/NewsBlog"
 import Quiz04 from './quiz/Quiz04/Quiz04-따라하기'
 import Quiz05 from './quiz/Quiz05/Quiz05-따라하기'
 import FoodMarket from './foodmarket/FoodMarket'
+import Quiz06 from './quiz/Quiz06/Quiz06'
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
     // <NewsBlog/>
     // <Quiz04/>
     // <Quiz05/>
-    <FoodMarket/>
+    // <FoodMarket/>
+    <Quiz06/>
 
   )
 }
