@@ -13,7 +13,7 @@ function Home({foods}) {
                     {
                         foods.map((food, index) => {
                             return (
-                                <Col md={4} sm={4} xxl={3}>
+                                <Col key={food.id} md={4} sm={4} xxl={3}>
                                     {/* <FoodCard food={food} /> */}
                                     <FoodCard food={food} foods={foods} index={index} />
                                 </Col>
