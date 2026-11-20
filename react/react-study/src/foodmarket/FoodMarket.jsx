@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar'; */
 
-import { Container, Nav, Navbar, Spinner, Button, Row, Col, Card } from 'react-bootstrap';
+
 
 import banner_bg from './img/banner_bg.jpg';
 import food1 from './img/food1.jpg';
@@ -17,24 +17,59 @@ import food3 from './img/food3.jpg';
 import foodsData from "./data/foodsData";
 import { useState } from 'react';
 import FoodCard from './components/FoodCard';
+import { Routes, Route, Link, useNavigate } from 'react-router';
+import CustomerService from './pages/CustomerService';
+import Home from './pages/Home';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
 function FoodMarket() {
 
     let [ foods, setFoods ] = useState(foodsData);
+
+    /* 
+        url주소(접속경로) 이동 (페이지 새로고침, 새로운 페이지 이동)
+        <a href='경로'>
+        locatioon.href = '경로'
+
+        react-router 이동
+        > 현재 html 동일한 페이지 > url 주소 표기가 바뀌면 > 그 주소일때 보여주는 화면요소로 전환(지웠다가 다시 그리기)
+
+        Link to=주소
+        navigate(주소)
+    */
+
+    let navigate = useNavigate();
 
     return (
         <div>
 
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
-                    <Navbar.Brand href="#home">FoodMarket</Navbar.Brand>
+                    {/* <Navbar.Brand onClick={()=>{location.href='/';}}>FoodMarket</Navbar.Brand> */}
+                    <Navbar.Brand onClick={()=>{navigate('/')}}>FoodMarket</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="#home"> <Link to='/'>Home</Link> </Nav.Link>
+                        <Nav.Link onClick={()=>{navigate('/detail')}}>Features(상세)</Nav.Link>
+                        <Nav.Link onClick={()=>{navigate('/info')}}>Info</Nav.Link>
+                        <Nav.Link onClick={()=>{navigate('/help')}}>고객센터</Nav.Link>
+
+                        {/* <Nav.Link> <Link to='/help'>고객센터 리액트라우터 방식</Link></Nav.Link>
+                        <Nav.Link href='/help'>고객센터 atag 방식</Nav.Link> */}
                     </Nav>
                 </Container>
             </Navbar>
+
+            <Routes>
+                <Route path='/' element={<Home foods={foods} />} />
+                <Route path='/help' element={<CustomerService />} />
+                <Route path='/detail' element={<div><h1>Detail page 🙆‍♂️💖</h1></div>} />
+                <Route path='/info' element={<div><h1>Info 페이지🙆‍♂️🐱‍🏍</h1></div>} />
+                <Route path='/test' element={<div><h1>이곳은 테스트🙆‍♂️</h1></div>} />
+                <Route path='/*' element={<div><h1>⚠잘못된 접근입니다. 경로를 확인하세요.⚠</h1></div>} />
+            </Routes>
+
+
+
 
             {/* 
                 이미지를 사용 (연결)
@@ -57,24 +92,7 @@ function FoodMarket() {
             {/* <img src={banner_bg} />
             <img src='https://images.pexels.com/photos/18726118/pexels-photo-18726118.jpeg' /> */}
 
-            <div className='main-bg'></div>
 
-            <Container>
-                <Row>
-                    {
-                        foods.map((food, index) => {
-                            return (
-                                <Col md={4} sm={4} xxl={3}>
-                                    {/* <FoodCard food={food} /> */}
-                                    <FoodCard food={food} foods={foods} index={index}/>
-                                </Col>
-                            )
-                        })
-                    }
-
-
-                </Row>
-            </Container>
 
 
             {/* 한줄 기준 12로 본다. */}

@@ -4,10 +4,13 @@ import './index.css'
 import App from './App.jsx'
 import TempApp from './TempApp.jsx'
 // inport TempApp from './TempApp.jsx'
+import { BrowserRouter } from 'react-router'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
     {/* <TempApp/> */}
   </StrictMode>,
 )

@@ -2,7 +2,7 @@
 let foodsData = [
     {
         id: 'fd000',
-        title: "Cake",
+        title: "Cake🍰",
         content: "당보충 초코 케이크",
         price: 8000,
         imgPath: 'images/food1.jpg',
@@ -11,7 +11,7 @@ let foodsData = [
 
     {
         id: 'fd001',
-        title: "French Fries",
+        title: "French Fries🍟",
         content: "정신에 좋은 감자튀김",
         price: 9000,
         imgPath: 'images/food2.jpg',
@@ -20,7 +20,7 @@ let foodsData = [
 
     {
         id: 'fd002',
-        title: "Hamburger",
+        title: "Hamburger🍔",
         content: "완전식품 햄버거",
         price: 11000,
         imgPath: 'images/food3.jpg',
@@ -54,14 +54,14 @@ let foodsData = [
     {
         id: "fd007",
         title: "연어 스테이크",
-        content: "고양이도 탐내는",
+        content: "고양이도 탐내는😻",
         price: 9000,
         imgPath: "images/food7.jpg",
         stockCount: 7
     },
     {
         id: "fd008",
-        title: "새우구이",
+        title: "새우구이🍤",
         content: "살짝 탄맛",
         price: 11000,
         imgPath: "images/food8.jpg",
